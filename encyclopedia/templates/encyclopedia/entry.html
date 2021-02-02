@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+    {% if msg_success %}
+        <p style= "color: green; font-weight: bold;"> 
+            {{msg_success}} 
+        </p>
+    {% endif %}
+    {{ entry | safe }}
+
+    <form action="{% url 'encyclopedia:edit' title %}" method="POST">
+        <button class="btn btn-outline-secondary">
+            Edit
+        </button>
+        {% csrf_token %}   
+    </form>
+
+{% endblock %}
